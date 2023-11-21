@@ -3,8 +3,9 @@
 # ------------------------------------------------------
 
 type Level {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  id: String!
+  name: String!
+  description: String!
 }
 
 type Query {
@@ -19,12 +20,12 @@ type Mutation {
 }
 
 input CreateLevelInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  name: String!
+  description: String!
 }
 
 input UpdateLevelInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  name: String!
+  description: String!
+  id: String!
 }

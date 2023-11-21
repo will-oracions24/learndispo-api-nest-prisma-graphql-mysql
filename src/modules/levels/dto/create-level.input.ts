@@ -1,7 +1,15 @@
-import { InputType, Int, Field } from '@nestjs/graphql';
+import { InputType, Field } from '@nestjs/graphql';
+import { IsString, MinLength } from 'class-validator';
 
 @InputType()
 export class CreateLevelInput {
-  @Field(() => Int, { description: 'Example field (placeholder)' })
-  exampleField: number;
+  @IsString()
+  @MinLength(3)
+  @Field()
+  name: string;
+
+  @IsString()
+  @MinLength(3)
+  @Field()
+  description: string;
 }

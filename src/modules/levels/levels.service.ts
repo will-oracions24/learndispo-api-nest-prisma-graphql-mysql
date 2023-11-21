@@ -1,26 +1,49 @@
 import { Injectable } from '@nestjs/common';
+import { Level } from '@prisma/client';
+import { LevelRepository } from './levels.repository';
 import { CreateLevelInput } from './dto/create-level.input';
 import { UpdateLevelInput } from './dto/update-level.input';
 
 @Injectable()
 export class LevelsService {
-  create(createLevelInput: CreateLevelInput) {
-    return 'This action adds a new level';
+  constructor(private levelRepository: LevelRepository) {}
+
+  public async getOne(id: string): Promise<Level> {
+    return await this.levelRepository.getOne({
+      where: { id },
+    });
   }
 
-  findAll() {
-    return `This action returns all levels`;
+  public async getMany(/*getLevelsArgs */): Promise<Level[]> {
+    return await this.levelRepository.getMany({
+      // where: { toiletId: getLevelsArgs.toiletId },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} level`;
+  public async create(createLevelData: CreateLevelInput): Promise<Level> {
+    const level = await this.levelRepository.create({
+      data: {
+        ...createLevelData,
+      },
+    });
+
+    return level;
   }
 
-  update(id: number, updateLevelInput: UpdateLevelInput) {
-    return `This action updates a #${id} level`;
+  public async update(updateLevelData: UpdateLevelInput): Promise<Level> {
+    const level = await this.levelRepository.update({
+      where: { id: updateLevelData.id },
+      data: updateLevelData,
+    });
+
+    return level;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} level`;
+  public async delete(id: string): Promise<Level> {
+    const level = await this.levelRepository.delete({
+      where: { id },
+    });
+
+    return level;
   }
 }
