@@ -86,7 +86,7 @@ model Question {
   createdAt      DateTime           @default(now())
   updatedAt      DateTime           @updatedAt
   content        String
-  Difficulty     QuestionDifficulty
+  difficulty     QuestionDifficulty
   type           QuestionType       @relation(fields: [questionTypeId], references: [id])
   questionTypeId String
   answerOptions  AnswerOption[]

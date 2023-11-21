@@ -22,9 +22,9 @@ type Lesson {
 
 type Query {
   levels: [Level!]!
-  level(id: Int!): Level!
+  level(id: String!): Level!
   subjects: [Subject!]!
-  subject(id: Int!): Subject!
+  subject(id: String!): Subject!
   lessons: [Lesson!]!
   lesson(id: String!): Lesson!
 }
@@ -32,10 +32,10 @@ type Query {
 type Mutation {
   createLevel(createLevelInput: CreateLevelInput!): Level!
   updateLevel(updateLevelInput: UpdateLevelInput!): Level!
-  removeLevel(id: Int!): Level!
+  removeLevel(id: String!): Level!
   createSubject(createSubjectInput: CreateSubjectInput!): Subject!
   updateSubject(updateSubjectInput: UpdateSubjectInput!): Subject!
-  removeSubject(id: Int!): Subject!
+  removeSubject(id: String!): Subject!
   createLesson(createLessonInput: CreateLessonInput!): Lesson!
   updateLesson(updateLessonInput: UpdateLessonInput!): Lesson!
   removeLesson(id: String!): Lesson!
