@@ -1,14 +1,14 @@
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Level as LevelDB } from '@prisma/client';
+import { Level as modelDB } from '@prisma/client';
 
 @ObjectType()
 export class Subject {
   @Field(() => String)
-  id: LevelDB['id'];
+  id: modelDB['id'];
 
   @Field(() => String)
-  name: LevelDB['name'];
+  name: modelDB['name'];
 
   @Field(() => String)
-  description: LevelDB['description'];
+  description: modelDB['description'];
 }

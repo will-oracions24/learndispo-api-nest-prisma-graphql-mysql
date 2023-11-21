@@ -66,6 +66,8 @@ model Lesson {
   id               String            @id @default(uuid())
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
+  name             String
+  description      String
   revisionSessions RevisionSession[]
   subject          Subject           @relation(fields: [subjectId], references: [id])
   subjectId        String
