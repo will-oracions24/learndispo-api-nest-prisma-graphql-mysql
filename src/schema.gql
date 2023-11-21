@@ -26,7 +26,7 @@ type Query {
   subjects: [Subject!]!
   subject(id: Int!): Subject!
   lessons: [Lesson!]!
-  lesson(id: Int!): Lesson!
+  lesson(id: String!): Lesson!
 }
 
 type Mutation {
@@ -38,7 +38,7 @@ type Mutation {
   removeSubject(id: Int!): Subject!
   createLesson(createLessonInput: CreateLessonInput!): Lesson!
   updateLesson(updateLessonInput: UpdateLessonInput!): Lesson!
-  removeLesson(id: Int!): Lesson!
+  removeLesson(id: String!): Lesson!
 }
 
 input CreateLevelInput {

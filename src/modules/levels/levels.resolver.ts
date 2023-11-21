@@ -19,7 +19,7 @@ export class LevelsResolver {
   }
 
   @Query(() => Level, { name: 'level' })
-  findOne(@Args('id', { type: () => Int }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.service.getOne(id);
   }
 
@@ -29,7 +29,7 @@ export class LevelsResolver {
   }
 
   @Mutation(() => Level)
-  removeLevel(@Args('id', { type: () => Int }) id: string) {
+  removeLevel(@Args('id', { type: () => String }) id: string) {
     return this.service.delete(id);
   }
 }

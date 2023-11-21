@@ -21,7 +21,7 @@ export class LessonsResolver {
   }
 
   @Query(() => Lesson, { name: 'lesson' })
-  findOne(@Args('id', { type: () => Int }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.service.getOne(id);
   }
 
@@ -33,7 +33,7 @@ export class LessonsResolver {
   }
 
   @Mutation(() => Lesson)
-  removeLesson(@Args('id', { type: () => Int }) id: string) {
+  removeLesson(@Args('id', { type: () => String }) id: string) {
     return this.service.delete(id);
   }
 }
