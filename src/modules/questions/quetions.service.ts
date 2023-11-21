@@ -23,7 +23,7 @@ export class QuestionsService {
   public async create(
     createQuestionData: CreateQuestionInput,
   ): Promise<Question> {
-    const { questionTypeId, ...rest } = createQuestionData;
+    const { answers, questionTypeId, ...rest } = createQuestionData;
 
     const model = await this.repository.create({
       data: {
@@ -32,6 +32,9 @@ export class QuestionsService {
           connect: {
             id: questionTypeId,
           },
+        },
+        answerOptions: {
+          create: [...answers.map((answer) => ({ ...answer }))],
         },
       },
     });
@@ -42,7 +45,7 @@ export class QuestionsService {
   public async update(
     updateQuestionData: UpdateQuestionInput,
   ): Promise<Question> {
-    const { questionTypeId, ...rest } = updateQuestionData;
+    const { answers, questionTypeId, ...rest } = updateQuestionData;
     const model = await this.repository.update({
       where: { id: updateQuestionData.id },
       data: {
@@ -52,6 +55,15 @@ export class QuestionsService {
           connect: {
             id: questionTypeId,
           },
+        },
+
+        answerOptions: {
+          update: [
+            ...answers.map((answer) => ({
+              data: { ...answer },
+              where: { id: answer.id },
+            })),
+          ],
         },
       },
     });

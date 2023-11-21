@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { QuestionDifficulty } from '@prisma/client';
+import { Prisma, QuestionDifficulty } from '@prisma/client';
 import { IsString, MinLength } from 'class-validator';
 
 @InputType()
@@ -14,4 +14,7 @@ export class CreateQuestionInput {
 
   @Field()
   questionTypeId: string;
+
+  @Field()
+  answers: (Prisma.AnswerOptionCreateInput | Prisma.AnswerOptionCreateInput)[];
 }
