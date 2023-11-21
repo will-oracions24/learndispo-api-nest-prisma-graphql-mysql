@@ -8,15 +8,26 @@ type Level {
   description: String!
 }
 
+type Subject {
+  id: String!
+  name: String!
+  description: String!
+}
+
 type Query {
   levels: [Level!]!
   level(id: Int!): Level!
+  subjects: [Subject!]!
+  subject(id: Int!): Subject!
 }
 
 type Mutation {
   createLevel(createLevelInput: CreateLevelInput!): Level!
   updateLevel(updateLevelInput: UpdateLevelInput!): Level!
   removeLevel(id: Int!): Level!
+  createSubject(createSubjectInput: CreateSubjectInput!): Subject!
+  updateSubject(updateSubjectInput: UpdateSubjectInput!): Subject!
+  removeSubject(id: Int!): Subject!
 }
 
 input CreateLevelInput {
@@ -25,6 +36,17 @@ input CreateLevelInput {
 }
 
 input UpdateLevelInput {
+  name: String!
+  description: String!
+  id: String!
+}
+
+input CreateSubjectInput {
+  name: String!
+  description: String!
+}
+
+input UpdateSubjectInput {
   name: String!
   description: String!
   id: String!

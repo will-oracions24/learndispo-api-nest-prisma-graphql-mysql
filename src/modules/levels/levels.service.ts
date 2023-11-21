@@ -6,22 +6,22 @@ import { UpdateLevelInput } from './dto/update-level.input';
 
 @Injectable()
 export class LevelsService {
-  constructor(private levelRepository: LevelRepository) {}
+  constructor(private repository: LevelRepository) {}
 
   public async getOne(id: string): Promise<Level> {
-    return await this.levelRepository.getOne({
+    return await this.repository.getOne({
       where: { id },
     });
   }
 
   public async getMany(/*getLevelsArgs */): Promise<Level[]> {
-    return await this.levelRepository.getMany({
+    return await this.repository.getMany({
       // where: { toiletId: getLevelsArgs.toiletId },
     });
   }
 
   public async create(createLevelData: CreateLevelInput): Promise<Level> {
-    const level = await this.levelRepository.create({
+    const level = await this.repository.create({
       data: {
         ...createLevelData,
       },
@@ -31,7 +31,7 @@ export class LevelsService {
   }
 
   public async update(updateLevelData: UpdateLevelInput): Promise<Level> {
-    const level = await this.levelRepository.update({
+    const level = await this.repository.update({
       where: { id: updateLevelData.id },
       data: updateLevelData,
     });
@@ -40,7 +40,7 @@ export class LevelsService {
   }
 
   public async delete(id: string): Promise<Level> {
-    const level = await this.levelRepository.delete({
+    const level = await this.repository.delete({
       where: { id },
     });
 
