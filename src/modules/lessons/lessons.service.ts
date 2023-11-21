@@ -21,9 +21,16 @@ export class LessonsService {
   }
 
   public async create(createLessonData: CreateLessonInput): Promise<Lesson> {
+    const { subjectId, ...rest } = createLessonData;
+
     const model = await this.repository.create({
       data: {
-        ...createLessonData,
+        ...rest,
+        subject: {
+          connect: {
+            id: createLessonData.subjectId,
+          },
+        },
       },
     });
 
@@ -31,9 +38,17 @@ export class LessonsService {
   }
 
   public async update(updateLessonData: UpdateLessonInput): Promise<Lesson> {
+    const { subjectId, ...rest } = updateLessonData;
     const model = await this.repository.update({
       where: { id: updateLessonData.id },
-      data: updateLessonData,
+      data: {
+        ...rest,
+        subject: {
+          connect: {
+            id: updateLessonData.subjectId,
+          },
+        },
+      },
     });
 
     return model;

@@ -1,5 +1,4 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { Prisma } from '@prisma/client';
 import { IsString, MinLength } from 'class-validator';
 
 @InputType()
@@ -15,5 +14,5 @@ export class CreateLessonInput {
   description: string;
 
   @Field()
-  subject: Prisma.SubjectCreateNestedOneWithoutLessonsInput;
+  subjectId: string;
 }

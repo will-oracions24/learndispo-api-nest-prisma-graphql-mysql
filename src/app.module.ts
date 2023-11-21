@@ -9,6 +9,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { SubjectsModule } from './modules/subjects/subjects.module';
+import { LessonsModule } from './modules/lessons/lessons.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { SubjectsModule } from './modules/subjects/subjects.module';
     DatabaseModule,
     LevelsModule,
     SubjectsModule,
+    LessonsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

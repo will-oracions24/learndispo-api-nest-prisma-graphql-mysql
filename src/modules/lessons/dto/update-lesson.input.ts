@@ -6,9 +6,9 @@ export class UpdateLessonInput extends PartialType(CreateLessonInput) {
   @Field()
   id: string;
 
-  @Field()
-  name: string;
+  // @Field()
+  // name: string;
 
-  @Field()
-  description: string;
+  // @Field()
+  // description: string;
 }

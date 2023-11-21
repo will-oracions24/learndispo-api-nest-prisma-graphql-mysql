@@ -15,12 +15,12 @@ export class LessonsResolver {
     return this.service.create(createLessonInput);
   }
 
-  @Query(() => [Lesson], { name: 'subjects' })
+  @Query(() => [Lesson], { name: 'lessons' })
   findAll() {
     return this.service.getMany();
   }
 
-  @Query(() => Lesson, { name: 'subject' })
+  @Query(() => Lesson, { name: 'lesson' })
   findOne(@Args('id', { type: () => Int }) id: string) {
     return this.service.getOne(id);
   }
