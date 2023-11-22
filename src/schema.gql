@@ -41,17 +41,37 @@ type UserResponse {
   isCorrect: String!
 }
 
+type QuestionType {
+  id: String!
+  name: String!
+  description: String!
+}
+
+type AnswerOption {
+  id: String!
+  content: String!
+  isCorrect: String!
+}
+
 type Query {
   levels: [Level!]!
   level(id: String!): Level!
   subjects: [Subject!]!
   subject(id: String!): Subject!
-  lessons: [UserResponse!]!
-  lesson(id: String!): UserResponse!
+  lessons: [Lesson!]!
+  lesson(id: String!): Lesson!
   performences: [Performance!]!
   performence(id: String!): Performance!
+  questions: [Question!]!
+  question(id: String!): Question!
   revisions: [RevisionSession!]!
   revision(id: String!): RevisionSession!
+  userResponses: [UserResponse!]!
+  userResponse(id: String!): UserResponse!
+  questionTypes: [QuestionType!]!
+  questionType(id: String!): QuestionType!
+  answerOptions: [AnswerOption!]!
+  answerOption(id: String!): AnswerOption!
 }
 
 type Mutation {
@@ -76,6 +96,12 @@ type Mutation {
   createUserResponse(createUserResponseInput: CreateUserResponseInput!): UserResponse!
   updateUserResponse(updateUserResponseInput: UpdateUserResponseInput!): UserResponse!
   removeUserResponse(id: String!): UserResponse!
+  createQuestionType(createQuestionTypeInput: CreateQuestionTypeInput!): QuestionType!
+  updateQuestionType(updateQuestionTypeInput: UpdateQuestionTypeInput!): QuestionType!
+  removeQuestionType(id: String!): QuestionType!
+  createAnswerOption(createAnswerOptionInput: CreateAnswerOptionInput!): AnswerOption!
+  updateAnswerOption(updateAnswerOptionInput: UpdateAnswerOptionInput!): AnswerOption!
+  removeAnswerOption(id: String!): AnswerOption!
 }
 
 input CreateLevelInput {
@@ -142,7 +168,7 @@ enum QuestionDifficulty {
 input CreateAnswerOptionInput {
   content: String!
   isCorrect: Boolean!
-  questionId: String!
+  questionId: String
 }
 
 input UpdateQuestionInput {
@@ -187,5 +213,23 @@ input UpdateUserResponseInput {
   questionId: String
   userId: String
   answserId: String
+  id: String!
+}
+
+input CreateQuestionTypeInput {
+  name: String!
+  description: String!
+}
+
+input UpdateQuestionTypeInput {
+  name: String
+  description: String
+  id: String!
+}
+
+input UpdateAnswerOptionInput {
+  content: String
+  isCorrect: Boolean
+  questionId: String
   id: String!
 }

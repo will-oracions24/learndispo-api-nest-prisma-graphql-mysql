@@ -16,12 +16,12 @@ export class UserResponsesResolver {
     return this.service.create(createUserResponseInput);
   }
 
-  @Query(() => [UserResponse], { name: 'lessons' })
+  @Query(() => [UserResponse], { name: 'userResponses' })
   findAll() {
     return this.service.getMany();
   }
 
-  @Query(() => UserResponse, { name: 'lesson' })
+  @Query(() => UserResponse, { name: 'userResponse' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.service.getOne(id);
   }

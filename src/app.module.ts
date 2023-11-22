@@ -13,6 +13,8 @@ import { PerformancesModule } from './modules/performences/performences.module';
 import { QuestionsModule } from './modules/questions/questions.module';
 import { RevisionsModule } from './modules/revisions/revisionSessions.module';
 import { UserResponsesModule } from './modules/userResponse/response.module';
+import { QuestionTypesModule } from './modules/questionTypes/questionTypes.module';
+import { AnswerOptionsModule } from './modules/answers/answers.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { UserResponsesModule } from './modules/userResponse/response.module';
     QuestionsModule,
     RevisionsModule,
     UserResponsesModule,
+    QuestionTypesModule,
+    AnswerOptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

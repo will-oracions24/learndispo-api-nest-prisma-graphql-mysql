@@ -15,12 +15,12 @@ export class QuestionsResolver {
     return this.service.create(createQuestionInput);
   }
 
-  @Query(() => [Question], { name: 'lessons' })
+  @Query(() => [Question], { name: 'questions' })
   findAll() {
     return this.service.getMany();
   }
 
-  @Query(() => Question, { name: 'lesson' })
+  @Query(() => Question, { name: 'question' })
   findOne(@Args('id', { type: () => String }) id: string) {
     return this.service.getOne(id);
   }

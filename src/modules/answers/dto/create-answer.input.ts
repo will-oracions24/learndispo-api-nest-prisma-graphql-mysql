@@ -13,6 +13,6 @@ export class CreateAnswerOptionInput {
   @Field()
   isCorrect: boolean;
 
-  @Field()
+  @Field(() => String, { nullable: true })
   questionId?: string;
 }
