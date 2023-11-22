@@ -1,5 +1,8 @@
-import { ObjectType, Field } from '@nestjs/graphql';
-import { RevisionSession as modelDB } from '@prisma/client';
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
+import {
+  RevisionSessionStatus,
+  RevisionSession as modelDB,
+} from '@prisma/client';
 
 @ObjectType()
 export class RevisionSession {
@@ -8,3 +11,5 @@ export class RevisionSession {
 
   status: modelDB['status'];
 }
+
+registerEnumType(RevisionSessionStatus, { name: 'RevisionSessionStatus' });

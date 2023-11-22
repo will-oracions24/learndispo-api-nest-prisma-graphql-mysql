@@ -1,5 +1,5 @@
 import { InputType, Field } from '@nestjs/graphql';
-import { Prisma, RevisionSessionStatus } from '@prisma/client';
+import { RevisionSessionStatus } from '@prisma/client';
 import { IsString, MinLength } from 'class-validator';
 
 @InputType()
@@ -9,6 +9,7 @@ export class CreateRevisionSessionInput {
   @Field()
   name: string;
 
+  @Field(() => RevisionSessionStatus)
   status: RevisionSessionStatus;
 
   @Field()
@@ -17,6 +18,6 @@ export class CreateRevisionSessionInput {
   @Field()
   userId: string;
 
-  @Field()
+  @Field(() => String)
   lessonsIds: string[];
 }

@@ -20,13 +20,38 @@ type Lesson {
   description: String!
 }
 
+type Performance {
+  id: String!
+  score: String!
+  feedback: String!
+}
+
+type Question {
+  id: String!
+  content: String!
+}
+
+type RevisionSession {
+  id: String!
+}
+
+type UserResponse {
+  id: String!
+  responseText: String!
+  isCorrect: String!
+}
+
 type Query {
   levels: [Level!]!
   level(id: String!): Level!
   subjects: [Subject!]!
   subject(id: String!): Subject!
-  lessons: [Lesson!]!
-  lesson(id: String!): Lesson!
+  lessons: [UserResponse!]!
+  lesson(id: String!): UserResponse!
+  performences: [Performance!]!
+  performence(id: String!): Performance!
+  revisions: [RevisionSession!]!
+  revision(id: String!): RevisionSession!
 }
 
 type Mutation {
@@ -39,6 +64,18 @@ type Mutation {
   createLesson(createLessonInput: CreateLessonInput!): Lesson!
   updateLesson(updateLessonInput: UpdateLessonInput!): Lesson!
   removeLesson(id: String!): Lesson!
+  createPerformance(createPerformanceInput: CreatePerformanceInput!): Performance!
+  updatePerformance(updatePerformanceInput: UpdatePerformanceInput!): Performance!
+  removePerformance(id: String!): Performance!
+  createQuestion(createQuestionInput: CreateQuestionInput!): Question!
+  updateQuestion(updateQuestionInput: UpdateQuestionInput!): Question!
+  removeQuestion(id: String!): Question!
+  createRevisionSession(createRevisionSessionInput: CreateRevisionSessionInput!): RevisionSession!
+  updateRevisionSession(updateRevisionSessionInput: UpdateRevisionSessionInput!): RevisionSession!
+  removeRevisionSession(id: String!): RevisionSession!
+  createUserResponse(createUserResponseInput: CreateUserResponseInput!): UserResponse!
+  updateUserResponse(updateUserResponseInput: UpdateUserResponseInput!): UserResponse!
+  removeUserResponse(id: String!): UserResponse!
 }
 
 input CreateLevelInput {
@@ -73,5 +110,82 @@ input UpdateLessonInput {
   name: String
   description: String
   subjectId: String
+  id: String!
+}
+
+input CreatePerformanceInput {
+  score: String!
+  feedback: String!
+  revisionId: String!
+}
+
+input UpdatePerformanceInput {
+  score: String
+  feedback: String
+  revisionId: String
+  id: String!
+}
+
+input CreateQuestionInput {
+  content: String!
+  difficulty: QuestionDifficulty!
+  questionTypeId: String!
+  answers: CreateAnswerOptionInput!
+}
+
+enum QuestionDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+input CreateAnswerOptionInput {
+  content: String!
+  isCorrect: Boolean!
+  questionId: String!
+}
+
+input UpdateQuestionInput {
+  content: String
+  difficulty: QuestionDifficulty
+  questionTypeId: String
+  answers: CreateAnswerOptionInput
+  id: String!
+}
+
+input CreateRevisionSessionInput {
+  name: String!
+  status: RevisionSessionStatus!
+  levelId: String!
+  userId: String!
+  lessonsIds: String!
+}
+
+enum RevisionSessionStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+input UpdateRevisionSessionInput {
+  name: String
+  status: RevisionSessionStatus
+  levelId: String
+  userId: String
+  lessonsIds: String
+  id: String!
+}
+
+input CreateUserResponseInput {
+  reponseText: String!
+  questionId: String!
+  userId: String!
+  answserId: String!
+}
+
+input UpdateUserResponseInput {
+  reponseText: String
+  questionId: String
+  userId: String
+  answserId: String
   id: String!
 }

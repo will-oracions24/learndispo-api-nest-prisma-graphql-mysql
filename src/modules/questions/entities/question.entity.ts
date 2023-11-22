@@ -1,5 +1,5 @@
-import { ObjectType, Field } from '@nestjs/graphql';
-import { Question as modelDB } from '@prisma/client';
+import { ObjectType, Field, registerEnumType } from '@nestjs/graphql';
+import { QuestionDifficulty, Question as modelDB } from '@prisma/client';
 
 @ObjectType()
 export class Question {
@@ -9,3 +9,5 @@ export class Question {
   @Field(() => String)
   content: modelDB['content'];
 }
+
+registerEnumType(QuestionDifficulty, { name: 'QuestionDifficulty' });
