@@ -94,14 +94,14 @@ model Question {
 }
 
 model AnswerOption {
-  id           String        @id @default(uuid())
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  id           String         @id @default(uuid())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
   content      String
-  isCorrect    Boolean       @default(false)
-  question     Question      @relation(fields: [questionId], references: [id])
+  isCorrect    Boolean        @default(false)
+  question     Question       @relation(fields: [questionId], references: [id])
   questionId   String
-  UserResponse UserResponse?
+  UserResponse UserResponse[]
 }
 
 model UserResponse {

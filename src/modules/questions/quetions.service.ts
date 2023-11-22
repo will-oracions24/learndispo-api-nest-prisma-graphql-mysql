@@ -58,10 +58,9 @@ export class QuestionsService {
         },
 
         answerOptions: {
-          update: [
+          create: [
             ...answers.map((answer) => ({
-              data: { ...answer },
-              where: { id: answer.id },
+              ...answer,
             })),
           ],
         },
