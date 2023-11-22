@@ -5,7 +5,7 @@ import { IsString, MinLength } from 'class-validator';
 export class CreateUserResponseInput {
   @IsString()
   @MinLength(3)
-  @Field()
+  @Field(() => String, { nullable: true })
   reponseText: string;
 
   @Field()

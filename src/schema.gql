@@ -202,7 +202,7 @@ input UpdateRevisionSessionInput {
 }
 
 input CreateUserResponseInput {
-  reponseText: String!
+  reponseText: String
   questionId: String!
   userId: String!
   answserId: String!
