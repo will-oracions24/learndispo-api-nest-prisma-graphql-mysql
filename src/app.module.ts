@@ -10,6 +10,10 @@ import { join } from 'path';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { SubjectsModule } from './modules/subjects/subjects.module';
 import { LessonsModule } from './modules/lessons/lessons.module';
+import { PerformancesModule } from './modules/performences/performences.module';
+import { QuestionsModule } from './modules/questions/questions.module';
+import { RevisionsModule } from './modules/revisions/revisionSessions.module';
+import { UserResponsesModule } from './modules/userResponse/response.module';
 
 @Module({
   imports: [
@@ -24,6 +28,10 @@ import { LessonsModule } from './modules/lessons/lessons.module';
     LevelsModule,
     SubjectsModule,
     LessonsModule,
+    PerformancesModule,
+    QuestionsModule,
+    RevisionsModule,
+    UserResponsesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
