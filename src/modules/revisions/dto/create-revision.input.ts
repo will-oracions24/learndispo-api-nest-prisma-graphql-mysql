@@ -18,6 +18,6 @@ export class CreateRevisionSessionInput {
   @Field()
   userId: string;
 
-  @Field(() => String)
+  @Field(() => [String])
   lessonsIds: string[];
 }
