@@ -1,15 +1,14 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { Level as modelDB } from '@prisma/client';
-import { BaseEntity } from 'src/common/BaseEntity';
 
 @ObjectType()
-export class Subject extends BaseEntity {
+export class BaseEntity {
   @Field(() => String)
   id: modelDB['id'];
 
   @Field(() => String)
-  name: modelDB['name'];
+  createdAt: modelDB['createdAt'];
 
   @Field(() => String)
-  description: modelDB['description'];
+  updatedAt: modelDB['updatedAt'];
 }

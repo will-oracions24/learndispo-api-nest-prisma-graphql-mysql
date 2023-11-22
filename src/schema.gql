@@ -10,6 +10,8 @@ type Level {
 
 type Subject {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   name: String!
   description: String!
 }
