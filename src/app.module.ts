@@ -15,6 +15,7 @@ import { RevisionsModule } from './modules/revisions/revisionSessions.module';
 import { UserResponsesModule } from './modules/userResponse/response.module';
 import { QuestionTypesModule } from './modules/questionTypes/questionTypes.module';
 import { AnswerOptionsModule } from './modules/answers/answers.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { AnswerOptionsModule } from './modules/answers/answers.module';
     UserResponsesModule,
     QuestionTypesModule,
     AnswerOptionsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

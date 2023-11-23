@@ -55,6 +55,13 @@ type AnswerOption {
   isCorrect: String!
 }
 
+type User {
+  id: String!
+  createdAt: String!
+  updatedAt: String!
+  username: String!
+}
+
 type Query {
   levels: [Level!]!
   level(id: String!): Level!
@@ -74,6 +81,8 @@ type Query {
   questionType(id: String!): QuestionType!
   answerOptions: [AnswerOption!]!
   answerOption(id: String!): AnswerOption!
+  users: [User!]!
+  user(id: String!): User!
 }
 
 type Mutation {
@@ -104,6 +113,9 @@ type Mutation {
   createAnswerOption(createAnswerOptionInput: CreateAnswerOptionInput!): AnswerOption!
   updateAnswerOption(updateAnswerOptionInput: UpdateAnswerOptionInput!): AnswerOption!
   removeAnswerOption(id: String!): AnswerOption!
+  createUser(createUserInput: CreateUserInput!): User!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: String!): User!
 }
 
 input CreateLevelInput {
@@ -234,4 +246,19 @@ input UpdateAnswerOptionInput {
   isCorrect: Boolean
   questionId: String
   id: String!
+}
+
+input CreateUserInput {
+  username: String!
+  email: String!
+  password: String!
+}
+
+input UpdateUserInput {
+  username: String
+  email: String
+  password: String
+  id: String!
+  name: String!
+  description: String!
 }
