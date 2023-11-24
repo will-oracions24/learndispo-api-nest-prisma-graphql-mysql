@@ -284,11 +284,18 @@ input UpdateUserInput {
 
 input CreateExerciseInput {
   name: String!
-  description: String!
+  levelId: String!
+  questionTypeId: String!
+  lessonsIds: [String!]! = []
+  questions: CreateQuestionInput!
 }
 
 input UpdateExerciseInput {
   name: String!
-  description: String!
+  levelId: String
+  questionTypeId: String
+  lessonsIds: [String!] = []
+  questions: CreateQuestionInput
   id: String!
+  description: String!
 }

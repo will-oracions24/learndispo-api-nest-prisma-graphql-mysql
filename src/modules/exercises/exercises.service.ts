@@ -23,9 +23,25 @@ export class ExercisesService {
   public async create(
     createExerciseData: CreateExerciseInput,
   ): Promise<Exercise> {
+    const { levelId, lessonsIds, questionTypeId, ...rest } = createExerciseData;
     const model = await this.repository.create({
       data: {
-        ...createExerciseData,
+        ...rest,
+
+        level: {
+          connect: {
+            id: levelId,
+          },
+        },
+
+        questionType: {
+          connect: {
+            id: questionTypeId,
+          },
+        },
+        lessons: {
+          connect: [...lessonsIds.map((id) => ({ id }))],
+        },
       },
     });
 

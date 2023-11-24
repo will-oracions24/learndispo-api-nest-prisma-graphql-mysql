@@ -1,5 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsString, MinLength } from 'class-validator';
+import { CreateQuestionInput } from 'src/modules/questions/dto/create-question.input';
 
 @InputType()
 export class CreateExerciseInput {
@@ -9,7 +10,17 @@ export class CreateExerciseInput {
   name: string;
 
   @IsString()
-  @MinLength(3)
   @Field()
-  description: string;
+  levelId: string;
+
+  @IsString()
+  @Field()
+  questionTypeId: string;
+
+  @IsString()
+  @Field(() => [String], { defaultValue: [] })
+  lessonsIds: string[];
+
+  @Field(() => CreateQuestionInput)
+  questions: CreateQuestionInput[];
 }

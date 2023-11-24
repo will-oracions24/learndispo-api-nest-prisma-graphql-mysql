@@ -39,6 +39,7 @@ model Level {
   description      String
   subjects         Subject[]
   revisionSessions RevisionSession[]
+  exercise         Exercise[]
 }
 
 // model Subject_Level {
@@ -63,7 +64,7 @@ model RevisionSession {
   exercise     Exercise              @relation(fields: [exerciseId], references: [id])
   exerciseId   String
   Performance  Performance[]
-  Lesson       Lesson[]
+  lessons      Lesson[]
 }
 
 model Exercise {
@@ -71,11 +72,14 @@ model Exercise {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   name            String
-  description     String
   Question        Question[]
-  RevisionSession RevisionSession[]
-  Lesson          Lesson[]
+  revisionSession RevisionSession[]
+  lessons         Lesson[]
   lessonId        String?
+  questionType    QuestionType      @relation(fields: [questionTypeId], references: [id])
+  questionTypeId  String
+  level           Level             @relation(fields: [levelId], references: [id])
+  levelId         String
 }
 
 model Lesson {
@@ -98,6 +102,7 @@ model QuestionType {
   name        String
   description String
   questions   Question[]
+  exercise    Exercise[]
 }
 
 model Question {
@@ -122,7 +127,7 @@ model AnswerOption {
   isCorrect    Boolean        @default(false)
   question     Question       @relation(fields: [questionId], references: [id])
   questionId   String
-  UserResponse UserResponse[]
+  userResponse UserResponse[]
 }
 
 model UserResponse {
