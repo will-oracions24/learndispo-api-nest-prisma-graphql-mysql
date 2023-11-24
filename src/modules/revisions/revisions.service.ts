@@ -25,7 +25,8 @@ export class RevisionSessionsService {
   public async create(
     createRevisionSessionData: CreateRevisionSessionInput,
   ): Promise<RevisionSession> {
-    const { userId, levelId, lessonsIds, ...rest } = createRevisionSessionData;
+    const { userId, score, feedback, levelId, lessonsIds, ...rest } =
+      createRevisionSessionData;
 
     const model = await this.repository.create({
       data: {
@@ -40,9 +41,12 @@ export class RevisionSessionsService {
             id: levelId,
           },
         },
-        lessons: {
-          connect: [...lessonsIds.map((id) => ({ id }))],
-        },
+        // lessons: {
+        //   connect: [...lessonsIds.map((id) => ({ id }))],
+        // },
+        score,
+        feedback,
+        exercise: {},
       },
     });
 
@@ -52,7 +56,8 @@ export class RevisionSessionsService {
   public async update(
     updateRevisionSessionData: UpdateRevisionSessionInput,
   ): Promise<RevisionSession> {
-    const { userId, levelId, lessonsIds, ...rest } = updateRevisionSessionData;
+    const { userId, score, feedback, levelId, lessonsIds, ...rest } =
+      updateRevisionSessionData;
     const model = await this.repository.update({
       where: { id: updateRevisionSessionData.id },
       data: {
@@ -67,9 +72,11 @@ export class RevisionSessionsService {
             id: levelId,
           },
         },
-        lessons: {
-          connect: [...lessonsIds.map((id) => ({ id }))],
-        },
+        // lessons: {
+        //   connect: [...lessonsIds.map((id) => ({ id }))],
+        // },
+        score,
+        feedback,
       },
     });
 

@@ -20,4 +20,10 @@ export class CreateRevisionSessionInput {
 
   @Field(() => [String])
   lessonsIds: string[];
+
+  @Field()
+  score: string;
+
+  @Field()
+  feedback: string;
 }

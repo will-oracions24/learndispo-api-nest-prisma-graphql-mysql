@@ -16,6 +16,9 @@ export class CreateQuestionInput {
   @Field()
   questionTypeId: string;
 
+  @Field()
+  exerciseId: string;
+
   @Field(() => [CreateAnswerOptionInput])
   answers: CreateAnswerOptionInput[];
 }

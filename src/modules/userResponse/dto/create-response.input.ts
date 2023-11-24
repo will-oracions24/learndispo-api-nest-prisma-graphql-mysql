@@ -15,5 +15,8 @@ export class CreateUserResponseInput {
   userId: string;
 
   @Field()
+  revisionId: string;
+
+  @Field()
   answserId: string;
 }

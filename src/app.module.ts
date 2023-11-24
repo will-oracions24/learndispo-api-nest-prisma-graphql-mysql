@@ -16,6 +16,7 @@ import { UserResponsesModule } from './modules/userResponse/response.module';
 import { QuestionTypesModule } from './modules/questionTypes/questionTypes.module';
 import { AnswerOptionsModule } from './modules/answers/answers.module';
 import { UsersModule } from './modules/users/users.module';
+import { ExercisesModule } from './modules/exercises/exercises.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { UsersModule } from './modules/users/users.module';
     QuestionTypesModule,
     AnswerOptionsModule,
     UsersModule,
+    ExercisesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

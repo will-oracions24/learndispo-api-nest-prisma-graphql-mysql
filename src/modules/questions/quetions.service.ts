@@ -23,7 +23,7 @@ export class QuestionsService {
   public async create(
     createQuestionData: CreateQuestionInput,
   ): Promise<Question> {
-    const { answers, questionTypeId, ...rest } = createQuestionData;
+    const { answers, questionTypeId, exerciseId, ...rest } = createQuestionData;
 
     const model = await this.repository.create({
       data: {
@@ -35,6 +35,11 @@ export class QuestionsService {
         },
         answerOptions: {
           create: [...answers.map((answer) => ({ ...answer }))],
+        },
+        exercise: {
+          connect: {
+            id: exerciseId,
+          },
         },
       },
     });
