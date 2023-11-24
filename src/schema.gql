@@ -280,8 +280,6 @@ input UpdateUserInput {
   email: String
   password: String
   id: String!
-  name: String!
-  description: String!
 }
 
 input CreateExerciseInput {
