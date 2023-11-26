@@ -16,7 +16,7 @@ export class CreateQuestionInput {
   @Field()
   questionTypeId: string;
 
-  @Field()
+  @Field({ nullable: true })
   exerciseId?: string;
 
   @Field(() => [CreateAnswerOptionInput])

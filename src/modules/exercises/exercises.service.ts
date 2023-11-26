@@ -23,7 +23,13 @@ export class ExercisesService {
   public async create(
     createExerciseData: CreateExerciseInput,
   ): Promise<Exercise> {
-    const { levelId, lessonsIds, questionTypeId, ...rest } = createExerciseData;
+    const {
+      levelId,
+      lessonsIds,
+      questionTypeId,
+      questions: questionsCreateDtoList,
+      ...rest
+    } = createExerciseData;
     const model = await this.repository.create({
       data: {
         ...rest,
@@ -42,6 +48,30 @@ export class ExercisesService {
         lessons: {
           connect: [...lessonsIds.map((id) => ({ id }))],
         },
+
+        questions: {
+          create: [
+            ...questionsCreateDtoList.map(
+              ({
+                answers: a,
+                content,
+                difficulty,
+                questionTypeId,
+                exerciseId,
+              }) => {
+                return {
+                  content,
+                  difficulty,
+                  questionTypeId,
+                  exerciseId, // <- to be remove
+                  answerOptions: {
+                    create: [...a.map((a) => ({ ...a }))],
+                  },
+                };
+              },
+            ),
+          ],
+        },
       },
     });
 
@@ -51,9 +81,34 @@ export class ExercisesService {
   public async update(
     updateExerciseData: UpdateExerciseInput,
   ): Promise<Exercise> {
+    const {
+      levelId,
+      lessonsIds,
+      questionTypeId,
+      questions: questionsCreateDtoList,
+      ...rest
+    } = updateExerciseData;
+
     const model = await this.repository.update({
       where: { id: updateExerciseData.id },
-      data: updateExerciseData,
+      data: {
+        ...rest,
+
+        level: {
+          connect: {
+            id: levelId,
+          },
+        },
+
+        questionType: {
+          connect: {
+            id: questionTypeId,
+          },
+        },
+        lessons: {
+          connect: [...lessonsIds.map((id) => ({ id }))],
+        },
+      },
     });
 
     return model;

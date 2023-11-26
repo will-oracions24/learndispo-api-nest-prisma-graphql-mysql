@@ -21,6 +21,6 @@ export class CreateExerciseInput {
   @Field(() => [String], { defaultValue: [] })
   lessonsIds: string[];
 
-  @Field(() => CreateQuestionInput)
+  @Field(() => [CreateQuestionInput])
   questions: CreateQuestionInput[];
 }

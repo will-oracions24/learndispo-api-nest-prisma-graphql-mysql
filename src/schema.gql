@@ -183,7 +183,7 @@ input CreateQuestionInput {
   content: String!
   difficulty: QuestionDifficulty!
   questionTypeId: String!
-  exerciseId: String!
+  exerciseId: String
   answers: [CreateAnswerOptionInput!]!
 }
 
@@ -287,7 +287,7 @@ input CreateExerciseInput {
   levelId: String!
   questionTypeId: String!
   lessonsIds: [String!]! = []
-  questions: CreateQuestionInput!
+  questions: [CreateQuestionInput!]!
 }
 
 input UpdateExerciseInput {
@@ -295,7 +295,7 @@ input UpdateExerciseInput {
   levelId: String
   questionTypeId: String
   lessonsIds: [String!] = []
-  questions: CreateQuestionInput
+  questions: [CreateQuestionInput!]
   id: String!
   description: String!
 }

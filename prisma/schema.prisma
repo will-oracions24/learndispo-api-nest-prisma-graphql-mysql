@@ -61,7 +61,7 @@ model RevisionSession {
   level        Level                 @relation(fields: [levelId], references: [id])
   levelId      String
   UserResponse UserResponse[]
-  exercise     Exercise              @relation(fields: [exerciseId], references: [id])
+  exercise     Exercise              @relation(fields: [exerciseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   exerciseId   String
   Performance  Performance[]
   lessons      Lesson[]
@@ -72,13 +72,13 @@ model Exercise {
   createdAt       DateTime          @default(now())
   updatedAt       DateTime          @updatedAt
   name            String
-  Question        Question[]
+  questions       Question[]
   revisionSession RevisionSession[]
   lessons         Lesson[]
   lessonId        String?
-  questionType    QuestionType      @relation(fields: [questionTypeId], references: [id])
+  questionType    QuestionType      @relation(fields: [questionTypeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   questionTypeId  String
-  level           Level             @relation(fields: [levelId], references: [id])
+  level           Level             @relation(fields: [levelId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   levelId         String
 }
 
@@ -115,7 +115,7 @@ model Question {
   questionTypeId String
   answerOptions  AnswerOption[]
   userResponses  UserResponse[]
-  exercise       Exercise           @relation(fields: [exerciseId], references: [id])
+  exercise       Exercise           @relation(fields: [exerciseId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   exerciseId     String
 }
 
@@ -125,7 +125,7 @@ model AnswerOption {
   updatedAt    DateTime       @updatedAt
   content      String
   isCorrect    Boolean        @default(false)
-  question     Question       @relation(fields: [questionId], references: [id])
+  question     Question       @relation(fields: [questionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   questionId   String
   userResponse UserResponse[]
 }
@@ -136,13 +136,13 @@ model UserResponse {
   updatedAt         DateTime        @updatedAt
   reponseText       String
   isCorrect         Boolean         @default(false)
-  question          Question        @relation(fields: [questionId], references: [id])
+  question          Question        @relation(fields: [questionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   questionId        String
-  user              User            @relation(fields: [userId], references: [id])
+  user              User            @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId            String
-  selectedAnswer    AnswerOption    @relation(fields: [answerOptionId], references: [id])
+  selectedAnswer    AnswerOption    @relation(fields: [answerOptionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   answerOptionId    String          @unique
-  revisionSession   RevisionSession @relation(fields: [revisionSessionId], references: [id])
+  revisionSession   RevisionSession @relation(fields: [revisionSessionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   revisionSessionId String
 }
 
