@@ -224,7 +224,7 @@ input CreateRevisionSessionInput {
   userId: String!
   exerciseId: String!
   lessonsIds: [String!]!
-  score: String!
+  score: String
   feedback: String
   userResponses: [CreateUserResponseInput!]!
 }

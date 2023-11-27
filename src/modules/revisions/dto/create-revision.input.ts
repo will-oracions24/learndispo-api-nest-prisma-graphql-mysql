@@ -25,8 +25,8 @@ export class CreateRevisionSessionInput {
   @Field(() => [String])
   lessonsIds: string[];
 
-  @Field()
-  score: string;
+  @Field({ nullable: true })
+  score?: string;
 
   @Field({ nullable: true })
   feedback?: string;
