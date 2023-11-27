@@ -10,7 +10,16 @@ export class RevisionSessionsRepository {
     where?: Prisma.RevisionSessionWhereUniqueInput;
   }): Promise<RevisionSession> {
     const { where } = params;
-    return this.prisma.revisionSession.findUnique({ where });
+    return this.prisma.revisionSession.findUnique({
+      where,
+      include: {
+        user: true,
+        level: true,
+        userResponses: true,
+        exercise: true,
+        lessons: true,
+      },
+    });
   }
 
   async getMany(params: {

@@ -42,18 +42,9 @@ type AnswerOption {
 
 type RevisionSession {
   id: String!
-}
-
-type UserResponse {
-  id: String!
-  responseText: String!
-  isCorrect: String!
-}
-
-type QuestionType {
-  id: String!
-  name: String!
-  description: String!
+  user: User!
+  level: Level!
+  exercise: Exercise!
 }
 
 type User {
@@ -72,6 +63,18 @@ type Exercise {
   level: Level!
 }
 
+type UserResponse {
+  id: String!
+  responseText: String!
+  isCorrect: String!
+}
+
+type QuestionType {
+  id: String!
+  name: String!
+  description: String!
+}
+
 type Query {
   levels: [Level!]!
   level(id: String!): Level!
@@ -87,14 +90,14 @@ type Query {
   answerOption(id: String!): AnswerOption!
   revisions: [RevisionSession!]!
   revision(id: String!): RevisionSession!
-  userResponses: [UserResponse!]!
-  userResponse(id: String!): UserResponse!
-  questionTypes: [QuestionType!]!
-  questionType(id: String!): QuestionType!
   users: [User!]!
   user(id: String!): User!
   exercises: [Exercise!]!
   exercise(id: String!): Exercise!
+  userResponses: [UserResponse!]!
+  userResponse(id: String!): UserResponse!
+  questionTypes: [QuestionType!]!
+  questionType(id: String!): QuestionType!
 }
 
 type Mutation {
@@ -119,18 +122,18 @@ type Mutation {
   createRevisionSession(createRevisionSessionInput: CreateRevisionSessionInput!): RevisionSession!
   updateRevisionSession(updateRevisionSessionInput: UpdateRevisionSessionInput!): RevisionSession!
   removeRevisionSession(id: String!): RevisionSession!
-  createUserResponse(createUserResponseInput: CreateUserResponseInput!): UserResponse!
-  updateUserResponse(updateUserResponseInput: UpdateUserResponseInput!): UserResponse!
-  removeUserResponse(id: String!): UserResponse!
-  createQuestionType(createQuestionTypeInput: CreateQuestionTypeInput!): QuestionType!
-  updateQuestionType(updateQuestionTypeInput: UpdateQuestionTypeInput!): QuestionType!
-  removeQuestionType(id: String!): QuestionType!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
   createExercise(createExerciseInput: CreateExerciseInput!): Exercise!
   updateExercise(updateExerciseInput: UpdateExerciseInput!): Exercise!
   removeExercise(id: String!): Exercise!
+  createUserResponse(createUserResponseInput: CreateUserResponseInput!): UserResponse!
+  updateUserResponse(updateUserResponseInput: UpdateUserResponseInput!): UserResponse!
+  removeUserResponse(id: String!): UserResponse!
+  createQuestionType(createQuestionTypeInput: CreateQuestionTypeInput!): QuestionType!
+  updateQuestionType(updateQuestionTypeInput: UpdateQuestionTypeInput!): QuestionType!
+  removeQuestionType(id: String!): QuestionType!
 }
 
 input CreateLevelInput {
@@ -218,7 +221,6 @@ input UpdateAnswerOptionInput {
 }
 
 input CreateRevisionSessionInput {
-  name: String!
   status: RevisionSessionStatus!
   levelId: String!
   userId: String!
@@ -243,7 +245,6 @@ input CreateUserResponseInput {
 }
 
 input UpdateRevisionSessionInput {
-  name: String
   status: RevisionSessionStatus
   levelId: String
   userId: String
@@ -252,26 +253,6 @@ input UpdateRevisionSessionInput {
   score: String
   feedback: String
   userResponses: [CreateUserResponseInput!]
-  id: String!
-}
-
-input UpdateUserResponseInput {
-  reponseText: String
-  questionId: String
-  userId: String
-  revisionId: String
-  answerOptionId: String
-  id: String!
-}
-
-input CreateQuestionTypeInput {
-  name: String!
-  description: String!
-}
-
-input UpdateQuestionTypeInput {
-  name: String
-  description: String
   id: String!
 }
 
@@ -304,4 +285,24 @@ input UpdateExerciseInput {
   questions: [CreateQuestionInput!]
   id: String!
   description: String!
+}
+
+input UpdateUserResponseInput {
+  reponseText: String
+  questionId: String
+  userId: String
+  revisionId: String
+  answerOptionId: String
+  id: String!
+}
+
+input CreateQuestionTypeInput {
+  name: String!
+  description: String!
+}
+
+input UpdateQuestionTypeInput {
+  name: String
+  description: String
+  id: String!
 }

@@ -1,15 +1,9 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { RevisionSessionStatus } from '@prisma/client';
-import { IsString, MinLength } from 'class-validator';
 import { CreateUserResponseInput } from 'src/modules/userResponse/dto/create-response.input';
 
 @InputType()
 export class CreateRevisionSessionInput {
-  @IsString()
-  @MinLength(3)
-  @Field()
-  name: string;
-
   @Field(() => RevisionSessionStatus)
   status: RevisionSessionStatus;
 

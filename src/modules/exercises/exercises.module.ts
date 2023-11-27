@@ -8,5 +8,6 @@ import { LevelsModule } from '../levels/levels.module';
 @Module({
   imports: [QuestionsModule, LevelsModule],
   providers: [ExercisesResolver, ExercisesService, ExerciseRepository],
+  exports: [ExercisesService],
 })
 export class ExercisesModule {}

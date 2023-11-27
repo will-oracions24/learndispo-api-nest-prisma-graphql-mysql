@@ -51,7 +51,7 @@ export class QuestionsResolver {
   }
 
   @ResolveField('answers', () => [AnswerOption])
-  async getPosts(@Parent() parent: Question) {
+  async resolveAnswers(@Parent() parent: Question) {
     const { id } = parent;
     return this.answersService.getMany({ questionId: id });
   }

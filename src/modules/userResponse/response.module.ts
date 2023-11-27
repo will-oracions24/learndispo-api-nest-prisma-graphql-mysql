@@ -9,5 +9,6 @@ import { UserResponsesRepository } from './response.repository';
     UserResponsesService,
     UserResponsesRepository,
   ],
+  exports: [UserResponsesService],
 })
 export class UserResponsesModule {}

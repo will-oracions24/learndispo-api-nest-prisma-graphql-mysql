@@ -52,7 +52,7 @@ export class RevisionSessionsService {
         // lessons: {
         //   connect: [...lessonsIds.map((id) => ({ id }))],
         // },
-        score,
+        score: score || '',
         feedback,
         exercise: {
           connect: {
@@ -100,7 +100,7 @@ export class RevisionSessionsService {
         // lessons: {
         //   connect: [...lessonsIds.map((id) => ({ id }))],
         // },
-        score,
+        score: score || '',
         feedback,
         exercise: {
           connect: {
