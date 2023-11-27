@@ -12,7 +12,12 @@ export class ExerciseRepository {
     const { where } = params;
     return this.prisma.exercise.findUnique({
       where,
-      include: { level: true, lessons: true },
+      include: {
+        level: true,
+        lessons: true,
+        questions: true,
+        questionType: true,
+      },
     });
   }
 
