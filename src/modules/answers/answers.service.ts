@@ -14,9 +14,11 @@ export class AnswerOptionsService {
     });
   }
 
-  public async getMany(/*getAnswerOptionsArgs */): Promise<AnswerOption[]> {
+  public async getMany(getAnswerOptionsArgs?: {
+    [key: string]: string;
+  }): Promise<AnswerOption[]> {
     return await this.repository.getMany({
-      // where: { toiletId: getAnswerOptionsArgs.toiletId },
+      where: { ...getAnswerOptionsArgs },
     });
   }
 

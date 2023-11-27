@@ -9,5 +9,6 @@ import { AnswerOptionsRepository } from './answers.repository';
     AnswerOptionsService,
     AnswerOptionsRepository,
   ],
+  exports: [AnswerOptionsService],
 })
 export class AnswerOptionsModule {}

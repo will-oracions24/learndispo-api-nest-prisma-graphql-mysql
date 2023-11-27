@@ -31,6 +31,13 @@ type Performance {
 type Question {
   id: String!
   content: String!
+  answers: [AnswerOption!]!
+}
+
+type AnswerOption {
+  id: String!
+  content: String!
+  isCorrect: String!
 }
 
 type RevisionSession {
@@ -49,12 +56,6 @@ type QuestionType {
   description: String!
 }
 
-type AnswerOption {
-  id: String!
-  content: String!
-  isCorrect: String!
-}
-
 type User {
   id: String!
   createdAt: String!
@@ -67,7 +68,7 @@ type Exercise {
   createdAt: String!
   updatedAt: String!
   name: String!
-  description: String!
+  questions: [Question!]!
 }
 
 type Query {
@@ -81,14 +82,14 @@ type Query {
   performence(id: String!): Performance!
   questions: [Question!]!
   question(id: String!): Question!
+  answerOptions: [AnswerOption!]!
+  answerOption(id: String!): AnswerOption!
   revisions: [RevisionSession!]!
   revision(id: String!): RevisionSession!
   userResponses: [UserResponse!]!
   userResponse(id: String!): UserResponse!
   questionTypes: [QuestionType!]!
   questionType(id: String!): QuestionType!
-  answerOptions: [AnswerOption!]!
-  answerOption(id: String!): AnswerOption!
   users: [User!]!
   user(id: String!): User!
   exercises: [Exercise!]!
@@ -111,6 +112,9 @@ type Mutation {
   createQuestion(createQuestionInput: CreateQuestionInput!): Question!
   updateQuestion(updateQuestionInput: UpdateQuestionInput!): Question!
   removeQuestion(id: String!): Question!
+  createAnswerOption(createAnswerOptionInput: CreateAnswerOptionInput!): AnswerOption!
+  updateAnswerOption(updateAnswerOptionInput: UpdateAnswerOptionInput!): AnswerOption!
+  removeAnswerOption(id: String!): AnswerOption!
   createRevisionSession(createRevisionSessionInput: CreateRevisionSessionInput!): RevisionSession!
   updateRevisionSession(updateRevisionSessionInput: UpdateRevisionSessionInput!): RevisionSession!
   removeRevisionSession(id: String!): RevisionSession!
@@ -120,9 +124,6 @@ type Mutation {
   createQuestionType(createQuestionTypeInput: CreateQuestionTypeInput!): QuestionType!
   updateQuestionType(updateQuestionTypeInput: UpdateQuestionTypeInput!): QuestionType!
   removeQuestionType(id: String!): QuestionType!
-  createAnswerOption(createAnswerOptionInput: CreateAnswerOptionInput!): AnswerOption!
-  updateAnswerOption(updateAnswerOptionInput: UpdateAnswerOptionInput!): AnswerOption!
-  removeAnswerOption(id: String!): AnswerOption!
   createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(id: String!): User!
@@ -208,6 +209,13 @@ input UpdateQuestionInput {
   id: String!
 }
 
+input UpdateAnswerOptionInput {
+  content: String
+  isCorrect: Boolean
+  questionId: String
+  id: String!
+}
+
 input CreateRevisionSessionInput {
   name: String!
   status: RevisionSessionStatus!
@@ -259,13 +267,6 @@ input CreateQuestionTypeInput {
 input UpdateQuestionTypeInput {
   name: String
   description: String
-  id: String!
-}
-
-input UpdateAnswerOptionInput {
-  content: String
-  isCorrect: Boolean
-  questionId: String
   id: String!
 }
 

@@ -1,4 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  Parent,
+  ResolveField,
+} from '@nestjs/graphql';
 import { AnswerOption } from './entities/answer.entity';
 import { CreateAnswerOptionInput } from './dto/create-answer.input';
 import { UpdateAnswerOptionInput } from './dto/update-answer.input';

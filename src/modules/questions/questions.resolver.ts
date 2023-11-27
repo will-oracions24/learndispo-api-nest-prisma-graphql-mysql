@@ -1,12 +1,25 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { Question } from './entities/question.entity';
 import { CreateQuestionInput } from './dto/create-question.input';
 import { UpdateQuestionInput } from './dto/update-question.input';
 import { QuestionsService } from './quetions.service';
+import { AnswerOption } from '../answers/entities/answer.entity';
+import { AnswerOptionsService } from '../answers/answers.service';
 
 @Resolver(() => Question)
 export class QuestionsResolver {
-  constructor(private readonly service: QuestionsService) {}
+  constructor(
+    private readonly service: QuestionsService,
+    private readonly answersService: AnswerOptionsService,
+  ) {}
 
   @Mutation(() => Question)
   createQuestion(
@@ -35,5 +48,11 @@ export class QuestionsResolver {
   @Mutation(() => Question)
   removeQuestion(@Args('id', { type: () => String }) id: string) {
     return this.service.delete(id);
+  }
+
+  @ResolveField('answers', () => [AnswerOption])
+  async getPosts(@Parent() parent: Question) {
+    const { id } = parent;
+    return this.answersService.getMany({ questionId: id });
   }
 }

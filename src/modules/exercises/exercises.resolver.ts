@@ -1,12 +1,25 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { Exercise } from './entities/exercise.entity';
 import { CreateExerciseInput } from './dto/create-exercise.input';
 import { UpdateExerciseInput } from './dto/update-exercise.input';
 import { ExercisesService } from './exercises.service';
+import { Question } from '../questions/entities/question.entity';
+import { QuestionsService } from '../questions/quetions.service';
 
 @Resolver(() => Exercise)
 export class ExercisesResolver {
-  constructor(private readonly service: ExercisesService) {}
+  constructor(
+    private readonly service: ExercisesService,
+    private readonly questionsService: QuestionsService,
+  ) {}
 
   @Mutation(() => Exercise)
   createExercise(
@@ -35,5 +48,11 @@ export class ExercisesResolver {
   @Mutation(() => Exercise)
   removeExercise(@Args('id', { type: () => String }) id: string) {
     return this.service.delete(id);
+  }
+
+  @ResolveField('questions', () => [Question])
+  async getPosts(@Parent() parent: Exercise) {
+    const { id } = parent;
+    return this.questionsService.getMany({ exerciseId: id });
   }
 }

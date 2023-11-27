@@ -14,9 +14,11 @@ export class QuestionsService {
     });
   }
 
-  public async getMany(/*getQuestionsArgs */): Promise<Question[]> {
+  public async getMany(getQuestionsArgs?: {
+    [key: string]: string;
+  }): Promise<Question[]> {
     return await this.repository.getMany({
-      // where: { toiletId: getQuestionsArgs.toiletId },
+      where: { ...getQuestionsArgs },
     });
   }
 

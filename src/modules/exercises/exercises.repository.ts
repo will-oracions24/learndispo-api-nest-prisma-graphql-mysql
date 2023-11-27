@@ -27,6 +27,14 @@ export class ExerciseRepository {
       cursor,
       where,
       orderBy,
+      include: {
+        _count: true,
+        lessons: true,
+        level: true,
+        questions: true,
+        questionType: true,
+        revisionSession: true,
+      },
     });
   }
 

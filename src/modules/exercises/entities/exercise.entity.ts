@@ -9,7 +9,4 @@ export class Exercise extends BaseEntity {
 
   @Field(() => String)
   name: modelDB['name'];
-
-  @Field(() => String)
-  description: modelDB['description'];
 }
