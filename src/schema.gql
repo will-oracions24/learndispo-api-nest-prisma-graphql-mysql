@@ -69,6 +69,7 @@ type Exercise {
   updatedAt: String!
   name: String!
   questions: [Question!]!
+  level: Level!
 }
 
 type Query {

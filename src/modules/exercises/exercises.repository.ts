@@ -10,7 +10,10 @@ export class ExerciseRepository {
     where?: Prisma.ExerciseWhereUniqueInput;
   }): Promise<Exercise> {
     const { where } = params;
-    return this.prisma.exercise.findUnique({ where });
+    return this.prisma.exercise.findUnique({
+      where,
+      include: { level: true, lessons: true },
+    });
   }
 
   async getMany(params: {

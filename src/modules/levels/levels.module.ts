@@ -5,5 +5,6 @@ import { LevelRepository } from './levels.repository';
 
 @Module({
   providers: [LevelsResolver, LevelsService, LevelRepository],
+  exports: [LevelsService],
 })
 export class LevelsModule {}

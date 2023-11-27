@@ -3,7 +3,6 @@ import { Exercise } from '@prisma/client';
 import { ExerciseRepository } from './exercises.repository';
 import { CreateExerciseInput } from './dto/create-exercise.input';
 import { UpdateExerciseInput } from './dto/update-exercise.input';
-import { QuestionsService } from '../questions/quetions.service';
 
 @Injectable()
 export class ExercisesService {

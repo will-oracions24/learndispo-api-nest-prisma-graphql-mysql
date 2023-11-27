@@ -14,9 +14,9 @@ export class LevelsService {
     });
   }
 
-  public async getMany(/*getLevelsArgs */): Promise<Level[]> {
+  public async getMany(getLevelsArgs?: any): Promise<Level[]> {
     return await this.repository.getMany({
-      // where: { toiletId: getLevelsArgs.toiletId },
+      where: { ...getLevelsArgs },
     });
   }
 

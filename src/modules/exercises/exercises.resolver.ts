@@ -13,12 +13,15 @@ import { UpdateExerciseInput } from './dto/update-exercise.input';
 import { ExercisesService } from './exercises.service';
 import { Question } from '../questions/entities/question.entity';
 import { QuestionsService } from '../questions/quetions.service';
+import { Level } from '../levels/entities/level.entity';
+import { LevelsService } from '../levels/levels.service';
 
 @Resolver(() => Exercise)
 export class ExercisesResolver {
   constructor(
     private readonly service: ExercisesService,
     private readonly questionsService: QuestionsService,
+    private readonly levelsService: LevelsService,
   ) {}
 
   @Mutation(() => Exercise)
@@ -51,8 +54,17 @@ export class ExercisesResolver {
   }
 
   @ResolveField('questions', () => [Question])
-  async getPosts(@Parent() parent: Exercise) {
+  async resolveQuestions(@Parent() parent: Exercise) {
     const { id } = parent;
     return this.questionsService.getMany({ exerciseId: id });
+  }
+
+  @ResolveField('level', () => Level)
+  async resolveLevel(@Parent() parent: Exercise) {
+    const exerciceId = parent.id;
+    const exercise = await this.service.getOne(exerciceId);
+    // console.log('Exercise: ', exercise);
+    // console.log('ID: ', id);
+    return this.levelsService.getOne(exercise.levelId);
   }
 }
