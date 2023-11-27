@@ -1,8 +1,9 @@
 import { ObjectType, Field } from '@nestjs/graphql';
 import { UserResponse as modelDB } from '@prisma/client';
+import { BaseEntity } from 'src/common/BaseEntity';
 
 @ObjectType()
-export class UserResponse {
+export class UserResponse extends BaseEntity {
   @Field(() => String)
   id: modelDB['id'];
 

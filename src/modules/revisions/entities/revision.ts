@@ -3,9 +3,10 @@ import {
   RevisionSessionStatus,
   RevisionSession as modelDB,
 } from '@prisma/client';
+import { BaseEntity } from 'src/common/BaseEntity';
 
 @ObjectType()
-export class RevisionSession {
+export class RevisionSession extends BaseEntity {
   @Field(() => String)
   id: modelDB['id'];
 

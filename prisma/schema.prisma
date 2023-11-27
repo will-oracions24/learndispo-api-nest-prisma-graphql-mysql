@@ -53,7 +53,7 @@ model RevisionSession {
   id            String                @id @default(uuid())
   createdAt     DateTime              @default(now())
   updatedAt     DateTime              @updatedAt
-  score         String
+  score         String                @default("0%")
   feedback      String?
   status        RevisionSessionStatus
   user          User                  @relation(fields: [userId], references: [id])
@@ -141,7 +141,7 @@ model UserResponse {
   user              User            @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId            String
   selectedAnswer    AnswerOption    @relation(fields: [answerOptionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  answerOptionId    String          @unique
+  answerOptionId    String
   revisionSession   RevisionSession @relation(fields: [revisionSessionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   revisionSessionId String
 }

@@ -4,6 +4,8 @@
 
 type Level {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   name: String!
   description: String!
 }
@@ -18,6 +20,8 @@ type Subject {
 
 type Lesson {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   name: String!
   description: String!
 }
@@ -30,18 +34,24 @@ type Performance {
 
 type Question {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   content: String!
   answers: [AnswerOption!]!
 }
 
 type AnswerOption {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   content: String!
   isCorrect: String!
 }
 
 type RevisionSession {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   status: RevisionSessionStatus!
   score: String
   feedback: String
@@ -73,12 +83,16 @@ type Exercise {
 
 type UserResponse {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   responseText: String!
   isCorrect: String!
 }
 
 type QuestionType {
   id: String!
+  createdAt: String!
+  updatedAt: String!
   name: String!
   description: String!
 }

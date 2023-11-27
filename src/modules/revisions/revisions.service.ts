@@ -42,7 +42,7 @@ export class RevisionSessionsService {
       lessonsIds,
       ...rest
     } = createRevisionSessionData;
-    const exercise = await this.exercisesService.getOne(exerciseId);
+    // const exercise = await this.exercisesService.getOne(exerciseId);
     // const userScore = this.calculateScore(exercise, userResponses);
 
     const model = await this.repository.create({
@@ -61,7 +61,7 @@ export class RevisionSessionsService {
         // lessons: {
         //   connect: [...lessonsIds.map((id) => ({ id }))],
         // },
-        score: score || '',
+        score: score || '0%',
         feedback,
         exercise: {
           connect: {
