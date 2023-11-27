@@ -42,9 +42,17 @@ type AnswerOption {
 
 type RevisionSession {
   id: String!
+  status: RevisionSessionStatus!
+  score: String
+  feedback: String
   user: User!
   level: Level!
   exercise: Exercise!
+}
+
+enum RevisionSessionStatus {
+  IN_PROGRESS
+  COMPLETED
 }
 
 type User {
@@ -229,11 +237,6 @@ input CreateRevisionSessionInput {
   score: String
   feedback: String
   userResponses: [CreateUserResponseInput!]!
-}
-
-enum RevisionSessionStatus {
-  IN_PROGRESS
-  COMPLETED
 }
 
 input CreateUserResponseInput {
