@@ -221,9 +221,11 @@ input CreateRevisionSessionInput {
   status: RevisionSessionStatus!
   levelId: String!
   userId: String!
+  exerciseId: String!
   lessonsIds: [String!]!
   score: String!
-  feedback: String!
+  feedback: String
+  userResponses: [CreateUserResponseInput!]!
 }
 
 enum RevisionSessionStatus {
@@ -231,23 +233,25 @@ enum RevisionSessionStatus {
   COMPLETED
 }
 
+input CreateUserResponseInput {
+  reponseText: String
+  questionId: String!
+  userId: String!
+  revisionId: String
+  answerOptionId: String!
+}
+
 input UpdateRevisionSessionInput {
   name: String
   status: RevisionSessionStatus
   levelId: String
   userId: String
+  exerciseId: String
   lessonsIds: [String!]
   score: String
   feedback: String
+  userResponses: [CreateUserResponseInput!]
   id: String!
-}
-
-input CreateUserResponseInput {
-  reponseText: String
-  questionId: String!
-  userId: String!
-  revisionId: String!
-  answserId: String!
 }
 
 input UpdateUserResponseInput {
@@ -255,7 +259,7 @@ input UpdateUserResponseInput {
   questionId: String
   userId: String
   revisionId: String
-  answserId: String
+  answerOptionId: String
   id: String!
 }
 

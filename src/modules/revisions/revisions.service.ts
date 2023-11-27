@@ -25,8 +25,16 @@ export class RevisionSessionsService {
   public async create(
     createRevisionSessionData: CreateRevisionSessionInput,
   ): Promise<RevisionSession> {
-    const { userId, score, feedback, levelId, lessonsIds, ...rest } =
-      createRevisionSessionData;
+    const {
+      exerciseId,
+      userResponses,
+      userId,
+      score,
+      feedback,
+      levelId,
+      lessonsIds,
+      ...rest
+    } = createRevisionSessionData;
 
     const model = await this.repository.create({
       data: {
@@ -46,7 +54,16 @@ export class RevisionSessionsService {
         // },
         score,
         feedback,
-        exercise: {},
+        exercise: {
+          connect: {
+            id: exerciseId,
+          },
+        },
+        userResponses: {
+          create: [
+            ...userResponses.map((userResponse) => ({ ...userResponse })),
+          ],
+        },
       },
     });
 
@@ -56,8 +73,16 @@ export class RevisionSessionsService {
   public async update(
     updateRevisionSessionData: UpdateRevisionSessionInput,
   ): Promise<RevisionSession> {
-    const { userId, score, feedback, levelId, lessonsIds, ...rest } =
-      updateRevisionSessionData;
+    const {
+      exerciseId,
+      userResponses,
+      userId,
+      score,
+      feedback,
+      levelId,
+      lessonsIds,
+      ...rest
+    } = updateRevisionSessionData;
     const model = await this.repository.update({
       where: { id: updateRevisionSessionData.id },
       data: {
@@ -77,6 +102,11 @@ export class RevisionSessionsService {
         // },
         score,
         feedback,
+        exercise: {
+          connect: {
+            id: exerciseId,
+          },
+        },
       },
     });
 

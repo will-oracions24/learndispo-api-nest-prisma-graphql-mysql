@@ -23,7 +23,7 @@ export class UserResponsesService {
   public async create(
     createUserResponseData: CreateUserResponseInput,
   ): Promise<UserResponse> {
-    const { questionId, revisionId, userId, answserId, ...rest } =
+    const { questionId, revisionId, userId, answerOptionId, ...rest } =
       createUserResponseData;
 
     const model = await this.repository.create({
@@ -41,7 +41,7 @@ export class UserResponsesService {
         },
         selectedAnswer: {
           connect: {
-            id: answserId,
+            id: answerOptionId,
           },
         },
         revisionSession: {
@@ -58,7 +58,8 @@ export class UserResponsesService {
   public async update(
     updateUserResponseData: UpdateUserResponseInput,
   ): Promise<UserResponse> {
-    const { questionId, userId, answserId, ...rest } = updateUserResponseData;
+    const { questionId, userId, answerOptionId, ...rest } =
+      updateUserResponseData;
     const model = await this.repository.update({
       where: { id: updateUserResponseData.id },
       data: {
@@ -75,7 +76,7 @@ export class UserResponsesService {
         },
         selectedAnswer: {
           connect: {
-            id: answserId,
+            id: answerOptionId,
           },
         },
       },

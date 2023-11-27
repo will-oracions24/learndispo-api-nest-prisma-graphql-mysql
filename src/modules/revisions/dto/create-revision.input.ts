@@ -1,6 +1,7 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { RevisionSessionStatus } from '@prisma/client';
 import { IsString, MinLength } from 'class-validator';
+import { CreateUserResponseInput } from 'src/modules/userResponse/dto/create-response.input';
 
 @InputType()
 export class CreateRevisionSessionInput {
@@ -18,12 +19,18 @@ export class CreateRevisionSessionInput {
   @Field()
   userId: string;
 
+  @Field()
+  exerciseId: string;
+
   @Field(() => [String])
   lessonsIds: string[];
 
   @Field()
   score: string;
 
-  @Field()
-  feedback: string;
+  @Field({ nullable: true })
+  feedback?: string;
+
+  @Field(() => [CreateUserResponseInput])
+  userResponses: CreateUserResponseInput[];
 }
