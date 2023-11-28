@@ -14,9 +14,9 @@ export class UserResponsesService {
     });
   }
 
-  public async getMany(/*getUserResponsesArgs */): Promise<UserResponse[]> {
+  public async getMany(getUserResponsesArgs?: any): Promise<UserResponse[]> {
     return await this.repository.getMany({
-      // where: { toiletId: getUserResponsesArgs.toiletId },
+      where: { ...getUserResponsesArgs },
     });
   }
 

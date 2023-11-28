@@ -8,9 +8,9 @@ import { UpdateAnswerOptionInput } from './dto/update-answer.input';
 export class AnswerOptionsService {
   constructor(private repository: AnswerOptionsRepository) {}
 
-  public async getOne(id: string): Promise<AnswerOption> {
+  public async getOne(getAnswerOptionsArgs?: any): Promise<AnswerOption> {
     return await this.repository.getOne({
-      where: { id },
+      where: { ...getAnswerOptionsArgs },
     });
   }
 

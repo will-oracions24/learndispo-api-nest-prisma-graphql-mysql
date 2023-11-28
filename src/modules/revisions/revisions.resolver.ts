@@ -82,10 +82,10 @@ export class RevisionSessionsResolver {
     return this.exercisesService.getOne(revision.exerciseId);
   }
 
-  // @ResolveField('userResponses', () => [UserResponse])
-  // async resolveUserResponses(@Parent() parent: RevisionSession) {
-  //   const revisionId = parent;
-  //   const revision = await this.service.getOne(revisionId.id);
-  //   return this.userResponsesService.getOne(revision.exerciseId);
-  // }
+  @ResolveField('userResponses', () => [UserResponse])
+  async resolveUserResponses(@Parent() parent: RevisionSession) {
+    const revisionId = parent.id;
+    // const revision = await this.service.getOne(revisionId.id);
+    return this.userResponsesService.getMany({ revisionSessionId: revisionId });
+  }
 }
