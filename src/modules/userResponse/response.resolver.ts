@@ -55,7 +55,9 @@ export class UserResponsesResolver {
   @ResolveField('selectedAnswer', () => AnswerOption, { nullable: true })
   async resolveUserResponses(@Parent() parent: UserResponse) {
     const id = parent.id;
-    // const revision = await this.service.getOne(revisionId.id);
-    return this.answerOptionsService.getOne({ questionId: id });
+    const userResponse = await this.service.getOne(id);
+    console.log(userResponse);
+    //@ts-ignore
+    return userResponse.selectedAnswer;
   }
 }

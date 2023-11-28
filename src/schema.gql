@@ -45,7 +45,8 @@ type AnswerOption {
   createdAt: String!
   updatedAt: String!
   content: String!
-  isCorrect: String!
+  isCorrect: Boolean!
+  question: Question!
 }
 
 type RevisionSession {

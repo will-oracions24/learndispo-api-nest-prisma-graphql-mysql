@@ -10,6 +10,6 @@ export class AnswerOption extends BaseEntity {
   @Field(() => String)
   content: modelDB['content'];
 
-  @Field(() => String)
+  @Field(() => Boolean)
   isCorrect: modelDB['isCorrect'];
 }

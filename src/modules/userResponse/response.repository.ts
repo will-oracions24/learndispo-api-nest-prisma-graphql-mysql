@@ -10,7 +10,12 @@ export class UserResponsesRepository {
     where?: Prisma.UserResponseWhereUniqueInput;
   }): Promise<UserResponse> {
     const { where } = params;
-    return this.prisma.userResponse.findUnique({ where });
+    return this.prisma.userResponse.findUnique({
+      where,
+      include: {
+        selectedAnswer: true,
+      },
+    });
   }
 
   async getMany(params: {
